@@ -1,33 +1,12 @@
 :root {
-  --font-family: "SF Pro Text",
-    "SF Pro Icons",
-    "Helvetica Neue",
-    "Helvetica",
-    "Arial",
-    sans-serif;
-  --deep-blue: rgb(49, 11, 218);
-  --deep-red: rgb(239, 6, 72);
-  --white: #fbfafa;
+  --font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  --white: #FFFFFF;
+  --background-color: #F2E7D5;
+  --card-color: #F7F7F7;
+  --headings-color: #6D9886;
+  --text-color: #393E46;
   --charcoal: rgb(45, 43, 43);
-  --layout-guide-item: rgba(255, 89, 0, 0.975);
-  --layout-guide-content: rgb(0, 183, 255);
 }
-
-/* start design helpers */
-
-.item {
-  border: 1px dotted var(--layout-guide-item);
-}
-
-.content {
-  border: 1px dotted var(--layout-guide-content);
-}
-
-.card-content {
-  border: 1px solid var(--layout-guide-content);
-}
-
-/* end design helpers */
 
 .container {
   width: 100%;
@@ -52,8 +31,26 @@
   padding: 10px;
 }
 
+.content .content {
+  padding: 0;
+}
+
+.control-container .content {
+  background-color: var(--headings-color);
+  color: var(--white);
+  margin: 0 8px;
+}
+
 /* adjustments for medium screens, like some tablets or landscape on a mobile */
-@media (min-width: 576px) {}
+@media (min-width: 576px) {
+  .item.control-container {
+    flex-basis: 50%;
+  }
+
+  .item.control {
+    flex-basis: 50%;
+  }
+}
 
 /* adjustments for medium-large screens, like some tablets */
 @media (min-width: 768px) {
@@ -62,6 +59,15 @@
   .item.navbar-menu {
     flex-basis: 50%;
   }
+
+  .item.card {
+    flex-basis: 50%;
+  }
+
+  .item.intro {
+    flex-basis: 50%;
+  }
+
 }
 
 /* adjustments for large screens, like laptops and desktops */
@@ -71,17 +77,18 @@
     margin: 0 auto;
   }
 
+  .item.card {
+    flex-basis: 33.33333333333333333333333333333333333%;
+  }
+
 }
 
 body {
   font-family: var(--font-family);
+  background-color: var(--background-color);
   margin: 0;
   padding: 0;
-  color: var(--charcoal);
-}
-
-a {
-  color: var(--deep-blue);
+  color: var(--text-color);
 }
 
 input,
@@ -111,11 +118,15 @@ form>* {
   font-family: var(--font-family);
 }
 
+.control select {
+  max-width: 72px;
+}
+
 #navbar {
   display: flex;
-  background-color: var(--deep-blue);
+  background-color: var(--headings-color);
   color: var(--white);
-  border-bottom: 4px solid var(--deep-red);
+  border-bottom: 4px solid;
 }
 
 #navbar a {
@@ -148,11 +159,39 @@ form>* {
   text-decoration: none;
 }
 
+.card-content {
+  background-color: var(--card-color);
+  border-top: 8px solid var(--charcoal);
+  margin: 8px 8px 24px 8px;
+}
+
+.card-content:hover {
+  box-shadow: 0 0 4px 3px var(--headings-color);
+}
+
+.card-content p {
+  font-style: italic;
+}
+
+.card-content .card-title {
+  margin-bottom: 24px;
+}
+
+.card-content .item.card-title {
+  flex-basis: 66.6666666666666667%;
+}
+
 #footer {
+  text-align: center;
   display: flex;
   margin-top: auto;
-  background-color: var(--deep-blue);
-  color: var(--white);
-  height: 200px;
-  border-top: 4px solid var(--deep-red);
+  background-color: var(--headings-color);
+  color: var(--charcoal);
+  height: 5px;
+}
+
+.intro {
+  font-size: 1.25rem;
+  padding-top: 2.5rem;
+  padding-bottom: 2.5rem;
 }
