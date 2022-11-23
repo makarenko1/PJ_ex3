@@ -2,13 +2,15 @@ export default function Record({ record }) {
 
 //   const listItems = record.laureates.map((laureate) => {
 //     if (laureate.knownName) {
-//     <li key={laureate.id}>{laureate.knownName.en}</li>
+//     return laureate.knownName.en
 //   } else if (laureate.orgName) {
-//     <li key={laureate.id}>{laureate.orgName.en}</li>
+//     return laureate.orgName.en
 //   } else {
-//     <li key={laureate.id}>{laureate.fullName.en}</li>
+//     return laureate.fullName.en
 //   }
-// });    
+// });
+
+// console.log(listItems);
 
   return (
     <div className="item card">
@@ -19,7 +21,16 @@ export default function Record({ record }) {
             <p className="text">
               Prize amount (adj): {record.prizeAmountAdjusted}<br />
               Year: {record.awardYear}</p>
-            {/* <ul style="list-style: none;">{listItems}</ul> */}
+            <ul style="list-style: none;">{
+            record.laureates.map((laureate) => {
+              if (laureate.knownName) {
+                return <li key={laureate.id}>{laureate.knownName.en}</li>
+              } else if (laureate.orgName) {
+                return <li key={laureate.id}>{laureate.orgName.en}</li>
+              } else {
+                return <li key={laureate.id}>{laureate.fullName.en}</li>
+              }
+            })}</ul>
           </div>
         </div>
       </div>
