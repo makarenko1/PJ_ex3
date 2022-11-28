@@ -21,15 +21,14 @@ export default function Record({ record }) {
             <p className="text">
               Prize amount (adj): {record.prizeAmountAdjusted}<br />
               Year: {record.awardYear}</p>
-            <ul style="list-style: none;">{
-            record.laureates.map((laureate) => {
-              if (laureate.knownName) {
-                return <li key={laureate.id}>{laureate.knownName.en}</li>
-              } else if (laureate.orgName) {
-                return <li key={laureate.id}>{laureate.orgName.en}</li>
-              } else {
-                return <li key={laureate.id}>{laureate.fullName.en}</li>
+            <ul>{
+              record.laureates.map((laureate, i) => {
+              const name = laureate.knownName || laureate.orgName || laureate.fullName
+              let displayedName = ""
+              if (name) {
+                displayedName = name.en
               }
+              return <li key={i}>{displayedName}</li>
             })}</ul>
           </div>
         </div>

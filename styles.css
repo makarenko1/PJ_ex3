@@ -169,8 +169,13 @@ form>* {
   box-shadow: 0 0 4px 3px var(--headings-color);
 }
 
-.card-content p {
+.card-content p, li {
   font-style: italic;
+}
+
+.card-content ul {
+  list-style: none;
+  display: inline;
 }
 
 .card-content .card-title {
