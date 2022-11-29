@@ -1,23 +1,24 @@
 
 import { useState } from "react";
+import { CONTACT_FORM_ENDPOINT } from "../config";
 
-// This is a partially complete contact form, to show the basics of
-// React useState to handle form data in a react app, which is a very common
-// requirement. Notice how we listen to event handlers like in standard JavaScript
-// And then we store our data using useState
-// Also notice that useState, when initialized, returns an array of:
-// i) the current state
-// ii) a function to create a new state
-// Pay attention to how both of these are used, as this is a simple example of
-// The primary way of managing data/state in React
+async function postContactForm(data) {
+  const response = await fetch(CONTACT_FORM_ENDPOINT, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(data)
+  })
+  return response;
+}
+
 export default function ContactPage() {
 
   const [formData, setFormData] = useState({});
 
-  function handleSubmit(event) {
-    event.preventDefault();
-    console.log(formData);
-    alert("Not yet handling form submission");
+  async function handleSubmit(event) {
+    await postContactForm(formData);
   }
 
   function handleChange(event) {
@@ -47,9 +48,9 @@ export default function ContactPage() {
             <input id="form-email" type="email" placeholder="Your email" value={formData.email} onChange={handleChange} required />
             <textarea id="form-comment" placeholder="Your comment" value={formData.comment} onChange={handleChange}></textarea>
             <button type="submit">Send</button>
-          </form>
+          </form>  
         </div>
       </div>
-    </div >
+    </div>
   )
 }
